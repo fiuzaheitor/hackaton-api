@@ -1,0 +1,29 @@
+type Vaccine {
+  id: ID
+  name: String
+  kid: User
+  description: String
+  createdAt: Float
+  createdBy: User
+  updatedAt: Float
+  updatedBy: User
+}
+
+input VaccineInput {
+  name: String
+  kid: ID
+  description: String
+  createdAt: Float
+  updatedAt: Float
+}
+
+type Query {
+  vaccine(id: ID!): Vaccine
+  vaccines: [Vaccine]
+}
+
+type Mutation {
+  createVaccine(data: VaccineInput): Vaccine
+  deleteVaccine(id: ID!): Vaccine
+  updateVaccine(id: ID!, data: VaccineInput): Vaccine
+}

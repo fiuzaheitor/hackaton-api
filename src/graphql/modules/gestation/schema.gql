@@ -1,0 +1,32 @@
+type Gestation {
+  id: ID!
+  mother: String!
+  description: String!
+  duration: Int
+  createdAt: Float
+  createdBy: User
+  updatedBy: User
+  updatedAt: Float
+}
+
+input GestationInput {
+  mother: String!
+  description: String!
+  duration: Int
+  createdAt: Float
+  updatedAt: Float
+}
+
+
+
+type Query {
+  gestations: [Gestation!]!
+  gestation(id: ID!): Gestation!
+}
+
+type Mutation {
+  createGestation(name: String!, description: String!, duration: Int!): Gestation!
+  updateGestation(id: ID!, name: String, description: String, duration: Int): Gestation!
+  deleteGestation(id: ID!): Gestation!
+}
+
