@@ -6,16 +6,16 @@ import { create } from "lodash";
 import { VaccineCards } from "../../../models/VaccineCard";
 
 const VaccineCard = {
-    kid: async (vaccineCard: any) => {
-        try {
-            const kid = await Kids.findById(vaccineCard.kid)
-            if(kid) {
-                return kid
-            }
-        } catch (err: any){
-            throw new GraphQLError(err.message);
-        }
-    },
+  kid: async (vaccineCard: any) => {
+    try {
+      const kid = await Kids.findById(vaccineCard.kid);
+      if (kid) {
+        return kid;
+      }
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
   createdBy: async (vaccineCard: any) => {
     try {
       const user = await Users.findById(vaccineCard.createdBy);
@@ -61,11 +61,10 @@ const Query = {
   async vaccineCardByKid(_: any, { kidId }: { kidId: string }) {
     try {
       return await VaccineCards.find({ kid: kidId });
-    }
-    catch (err: any) {
+    } catch (err: any) {
       throw new GraphQLError(err.message);
     }
-    },
+  },
 };
 
 const Mutation = {
@@ -81,7 +80,11 @@ const Mutation = {
       throw new GraphQLError(err.message);
     }
   },
-  async updateVaccineCard(_: any, { id, data }: { id: string; data: any }, context: any) {
+  async updateVaccineCard(
+    _: any,
+    { id, data }: { id: string; data: any },
+    context: any,
+  ) {
     const userAuth = auth(context);
     try {
       const vaccineCard = await VaccineCards.findById(id);
@@ -90,8 +93,11 @@ const Mutation = {
       }
       return await VaccineCards.findByIdAndUpdate(
         id,
-        { ...data, updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id },
-        { new: true }
+        {
+          ...data,
+          updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id,
+        },
+        { new: true },
       );
     } catch (err: any) {
       throw new GraphQLError(err.message);
@@ -108,9 +114,9 @@ const Mutation = {
 };
 
 const resolvers = {
-    VaccineCard,
-    Query,
-    Mutation,
-}
+  VaccineCard,
+  Query,
+  Mutation,
+};
 
 export default resolvers;

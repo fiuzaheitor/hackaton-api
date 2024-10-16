@@ -26,6 +26,8 @@ input UserInput {
   lastActive: Float
   createdAt: Float
   updatedAt: Float
+  updatedBy: ID
+  createdBy: ID
 }
 
 input LoginUserInput {

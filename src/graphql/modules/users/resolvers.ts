@@ -7,20 +7,14 @@ import { Users } from "../../../models/User";
 const User = {
   createdBy: async (user: any) => {
     try {
-      const u = await Users.findById(user.createdBy);
-      if (u) {
-        return u;
-      }
+      return await Users.findById(user.createdBy);
     } catch (error: any) {
       throw new GraphQLError(error);
     }
   },
   updatedBy: async (user: any) => {
     try {
-      const u = await Users.findById(user.updateBy);
-      if (u) {
-        return u;
-      }
+      return await Users.findById(user.updatedBy);
     } catch (error: any) {
       throw new GraphQLError(error);
     }
@@ -42,7 +36,7 @@ const Query = {
   },
   async users() {
     try {
-      return await Users.find({});
+      return await Users.find();
     } catch (error: any) {
       throw new GraphQLError(error);
     }
@@ -67,8 +61,8 @@ const Mutation = {
       phone,
       isActive: true,
       password: passwordEncrypted,
-      updateBy: typeof userAuth === "string" ? userAuth : userAuth.id,
-      updateAt: new Date().valueOf(),
+      updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id,
+      updatedAt: new Date().valueOf(),
     };
 
     return await Users.create(newUser);
@@ -108,7 +102,18 @@ const Mutation = {
     { id, data }: { id: string; data: any },
     context: any,
   ) {
-    const { name, cpf, kids, gestations, phone, isActive, email, password, oldPassword, lastActive } = data;
+    const {
+      name,
+      cpf,
+      kids,
+      gestations,
+      phone,
+      isActive,
+      email,
+      password,
+      oldPassword,
+      lastActive,
+    } = data;
     const userAuth = auth(context);
 
     const user = await Users.findById(id);
@@ -128,13 +133,12 @@ const Mutation = {
           password,
           oldPassword,
           lastActive,
-          updateBy: typeof userAuth === "string" ? userAuth : userAuth.id,
-          updateAt: new Date().valueOf(),
+          updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id,
+          updatedAt: new Date().valueOf(),
         },
         { new: true },
       );
-    }
-    catch (error: any) {
+    } catch (error: any) {
       throw new GraphQLError(error);
     }
   },

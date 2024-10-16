@@ -9,7 +9,7 @@ type VaccineCard {
 }
 
 input VaccineCardInput {
-    kid: ID
+  kid: ID
   applicationDate: Float
   createdAt: Float
   updatedAt: Float

@@ -1,12 +1,12 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from "mongoose";
 
 const GestationSchema = new Schema({
-  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  user: { type: Schema.Types.ObjectId, ref: "User" },
   week: { type: Number },
   createdAt: { type: Number, default: Date.now },
   updatedAt: { type: Number, default: Date.now },
-  createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
-  updatedBy: { type: Schema.Types.ObjectId, ref: 'User' },
+  createdBy: { type: Schema.Types.ObjectId, ref: "User" },
+  updatedBy: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
-export const Gestations = model('Gestation', GestationSchema);
+export const Gestations = model("Gestation", GestationSchema);

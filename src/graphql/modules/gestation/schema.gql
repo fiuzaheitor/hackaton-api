@@ -13,7 +13,8 @@ type Gestation {
 input GestationInput {
   user: ID
   description: String
-  duration: Int
+  week: Int
+  isFinished: Boolean
   createdAt: Float
   updatedAt: Float
 }
@@ -29,4 +30,3 @@ type Mutation {
   updateGestation(id: ID!, data: GestationInput): Gestation
   deleteGestation(id: ID!): Gestation
 }
-

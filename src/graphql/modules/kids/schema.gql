@@ -10,7 +10,7 @@ type Kid {
 }
 
 input KidInput {
-    mom: ID
+  mom: ID
   name: String
   birthDate: Float
   createdAt: Float

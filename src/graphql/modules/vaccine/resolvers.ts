@@ -55,13 +55,16 @@ const Query = {
       throw new GraphQLError(err.message);
     }
   },
-  async vaccinesByVaccineCard(_: any, { vaccineCardId }: { vaccineCardId: string }) {
+  async vaccinesByVaccineCard(
+    _: any,
+    { vaccineCardId }: { vaccineCardId: string },
+  ) {
     try {
       return await Vaccines.find({ vaccineCard: vaccineCardId });
     } catch (err: any) {
       throw new GraphQLError(err.message);
     }
-  }
+  },
 };
 
 const Mutation = {
@@ -86,7 +89,11 @@ const Mutation = {
     try {
       const vaccine = await Vaccines.findByIdAndUpdate(
         id,
-        { ...input, updatedAt: Date.now(), updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id },
+        {
+          ...input,
+          updatedAt: Date.now(),
+          updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id,
+        },
         { new: true },
       );
       if (vaccine) {

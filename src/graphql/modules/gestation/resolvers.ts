@@ -38,75 +38,88 @@ const Query = {
   async gestation(_: any, { id }: { id: string }) {
     try {
       const gestation = await Gestations.findById(id);
-        if (gestation) {
-            return gestation;
-        } else {
-            throw new GraphQLError("Gestation não existe");
-        }
+      if (gestation) {
+        return gestation;
+      } else {
+        throw new GraphQLError("Gestation não existe");
+      }
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
     }
-    catch (err: any) {
-        throw new GraphQLError(err.message);
+  },
+  async gestations() {
+    try {
+      return await Gestations.find({});
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
     }
-    },
-    async gestations() {
-        try {
-            return await Gestations.find({});
-        } catch (err: any) {
-            throw new GraphQLError(err.message);
-        }
-    },
-    async gestationsByMom(_: any, { userId }: { userId: string }) {
-        try {
-            return await Gestations.find({ user: userId });
-        } catch (err: any) {
-            throw new GraphQLError(err.message);
-        }
+  },
+  async gestationsByMom(_: any, { userId }: { userId: string }) {
+    try {
+      return await Gestations.find({ user: userId });
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
     }
+  },
 };
 
 const Mutation = {
-    async createGestation(_: any, { data }: { data: any }, context: any) {
-        try {
-            const userAuth = auth(context);
-            const newGestation = new Gestations({ ...data, createdBy: typeof userAuth === "string" ? userAuth : userAuth.id,});
-            return await newGestation.save();
-        } catch (err: any) {
-            throw new GraphQLError(err.message);
-        }
-    },
-    async updateGestation(_: any, { id, data }: { id: string, data: any }, context: any) {
-        try {
-            const userAuth = auth(context);
-            const gestation = await Gestations.findById(id);
-            if (!gestation) {
-              throw new GraphQLError("Gestation não existe");
-            } 
+  async createGestation(_: any, { data }: { data: any }, context: any) {
+    try {
+      const userAuth = auth(context);
+      const newGestation = new Gestations({
+        ...data,
+        createdBy: typeof userAuth === "string" ? userAuth : userAuth.id,
+      });
+      return await newGestation.save();
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
+  async updateGestation(
+    _: any,
+    { id, data }: { id: string; data: any },
+    context: any,
+  ) {
+    try {
+      const userAuth = auth(context);
+      const gestation = await Gestations.findById(id);
+      if (!gestation) {
+        throw new GraphQLError("Gestation não existe");
+      }
 
-            return Gestations.findByIdAndUpdate(id, { ...data, updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id }, {new: true});
-        } catch (err: any) {
-            throw new GraphQLError(err.message);
-        }
-    },
-    async deleteGestation(_: any, { id }: { id: string }, context: any) {
-        try {
-            const user = auth(context);
-            const gestation = await Gestations.findById(id);
-            if (gestation) {
-                gestation.deleteOne();
-                return gestation;
-            } else {
-                throw new GraphQLError("Gestation não existe");
-            }
-        } catch (err: any) {
-            throw new GraphQLError(err.message);
-        }
-    },
+      return Gestations.findByIdAndUpdate(
+        id,
+        {
+          ...data,
+          updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id,
+        },
+        { new: true },
+      );
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
+  async deleteGestation(_: any, { id }: { id: string }, context: any) {
+    try {
+      const user = auth(context);
+      const gestation = await Gestations.findById(id);
+      if (gestation) {
+        gestation.deleteOne();
+        return gestation;
+      } else {
+        throw new GraphQLError("Gestation não existe");
+      }
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
 };
 
 const resolvers = {
-    Gestation,
-    Query,
-    Mutation,
-  };
-  
-  export default resolvers;
+  Gestation,
+  Query,
+  Mutation,
+};
+
+export default resolvers;

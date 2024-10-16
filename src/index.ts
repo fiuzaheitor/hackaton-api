@@ -6,19 +6,19 @@ import cors from "cors";
 const app = express();
 const httpServer = http.createServer(app);
 
-const sgMail = require('@sendgrid/mail');
-require('dotenv').config();
+const sgMail = require("@sendgrid/mail");
+require("dotenv").config();
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 app.use(cors());
 app.use(express.json());
 
-app.post('/send-email', async (req, res) => {
+app.post("/send-email", async (req, res) => {
   const { email, subject, message } = req.body;
   const msg = {
     to: email,
-    from: 'heitorfiuzabr@gmail.com', 
+    from: "heitorfiuzabr@gmail.com",
     subject: subject,
     text: message,
     html: `<strong>${message}</strong>`,
@@ -26,10 +26,10 @@ app.post('/send-email', async (req, res) => {
 
   try {
     await sgMail.send(msg);
-    res.status(200).send('Email sent successfully');
+    res.status(200).send("Email sent successfully");
   } catch (error) {
     console.error(error);
-    res.status(500).send('Error sending email');
+    res.status(500).send("Error sending email");
   }
 });
 
