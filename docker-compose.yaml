@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  bu-backend:
+    build: .
+    container_name: bu-api
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/app
+    ports:
+      - "${REACT_APP_SERVER_PORT}:${REACT_APP_SERVER_PORT}"
+    expose:
+      - "${REACT_APP_SERVER_PORT}"
+    restart: unless-stopped
+    command: npm start
+    # depends_on:
+    #   - mongodb
+    # networks:
+    #   - branduniverse
+# networks:
+#   branduniverse:
+#     name: branduniverse
+#     driver: bridge
+#     external: true

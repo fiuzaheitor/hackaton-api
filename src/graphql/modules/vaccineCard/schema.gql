@@ -1,0 +1,30 @@
+type VaccineCard {
+  id: ID
+  kid: Kid
+  vaccine: [Vaccine]
+  applicationDate: Float
+  createdAt: Float
+  createdBy: User
+  updatedBy: User
+  updatedAt: Float
+}
+
+input VaccineCardInput {
+  kid: ID
+  vaccine: [ID]
+  applicationDate: Float
+  createdAt: Float
+  updatedAt: Float
+}
+
+type Query {
+  vaccineCard(id: ID!): VaccineCard
+  vaccineCards: [VaccineCard]
+  vaccineCardsByKid(kid: ID!): [VaccineCard]
+}
+
+type Mutation {
+  createVaccineCard(data: VaccineCardInput): VaccineCard
+  deleteVaccineCard(id: ID!): VaccineCard
+  updateVaccineCard(id: ID!, data: VaccineCardInput): VaccineCard
+}

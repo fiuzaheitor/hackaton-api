@@ -1,0 +1,30 @@
+type Kid {
+  id: ID
+  name: String
+  mother: User
+  birthDate: Float
+  createdAt: Float
+  createdBy: User
+  updatedBy: User
+  updatedAt: Float
+}
+
+input KidInput {
+  name: String
+  mother: ID
+  birthDate: Float
+  createdAt: Float
+  updatedAt: Float
+}
+
+type Query {
+  kid(id: ID!): Kid
+  kids: [Kid]
+  kidsByMother(mother: ID!): [Kid]
+}
+
+type Mutation {
+  createKid(data: KidInput): Kid
+  deleteKid(id: ID!): Kid
+  updateKid(id: ID!, data: KidInput): Kid
+}

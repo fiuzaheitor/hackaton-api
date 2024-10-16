@@ -1,0 +1,43 @@
+type User {
+  id: ID
+  name: String
+  cpf: String
+  isActive: Boolean
+  phone: String
+  token: String
+  email: String
+  password: String
+  oldPassword: String
+  lastActive: Float
+  createdAt: Float
+  createdBy: User
+  updatedBy: User
+  updatedAt: Float
+}
+
+input UserInput {
+  name: String
+  cpf: String
+  phone: String
+  isActive: Boolean
+  email: String
+  password: String
+  createdAt: Float
+  updatedAt: Float
+}
+
+input LoginUserInput {
+  email: String
+  password: String
+}
+
+type Query {
+  user(id: ID!): User
+  users: [User]
+}
+
+type Mutation {
+  createUser(data: UserInput): User
+  deleteUser(id: ID!): User
+  loginUser(data: LoginUserInput): User
+}
