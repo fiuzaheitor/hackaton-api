@@ -1,7 +1,7 @@
 type Kid {
   id: ID
   name: String
-  mother: User
+  vaccineCard: VaccineCard
   birthDate: Float
   createdAt: Float
   createdBy: User
@@ -11,7 +11,6 @@ type Kid {
 
 input KidInput {
   name: String
-  mother: ID
   birthDate: Float
   createdAt: Float
   updatedAt: Float
@@ -20,7 +19,6 @@ input KidInput {
 type Query {
   kid(id: ID!): Kid
   kids: [Kid]
-  kidsByMother(mother: ID!): [Kid]
 }
 
 type Mutation {

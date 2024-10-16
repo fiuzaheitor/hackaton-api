@@ -1,6 +1,5 @@
 type VaccineCard {
   id: ID
-  kid: Kid
   vaccine: [Vaccine]
   applicationDate: Float
   createdAt: Float
@@ -10,7 +9,6 @@ type VaccineCard {
 }
 
 input VaccineCardInput {
-  kid: ID
   vaccine: [ID]
   applicationDate: Float
   createdAt: Float
@@ -20,7 +18,6 @@ input VaccineCardInput {
 type Query {
   vaccineCard(id: ID!): VaccineCard
   vaccineCards: [VaccineCard]
-  vaccineCardsByKid(kid: ID!): [VaccineCard]
 }
 
 type Mutation {

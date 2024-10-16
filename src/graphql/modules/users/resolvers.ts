@@ -103,6 +103,19 @@ const Mutation = {
       token,
     };
   },
+  async updateUser(
+    _: any,
+    { id, data }: { id: string; data: any },
+    context: any,
+  ) {
+    const { name, email, phone, password, cpf } = data;
+    const userAuth = auth(context);
+
+    const user = await Users.findById(id);
+    if (!user) {
+      throw new GraphQLError("Esse usuário não existe");
+    }
+  },
   async deleteUser(_: any, { id }: { id: string }, context: any) {
     auth(context);
 
