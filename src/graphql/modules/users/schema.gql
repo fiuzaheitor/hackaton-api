@@ -2,6 +2,7 @@ type User {
   id: ID
   name: String
   cpf: String
+  kids: [Kid]
   isActive: Boolean
   phone: String
   token: String
@@ -18,10 +19,13 @@ type User {
 input UserInput {
   name: String
   cpf: String
+  kid: [ID]
   phone: String
   isActive: Boolean
   email: String
   password: String
+  oldPassword: String
+  lastActive: Float
   createdAt: Float
   updatedAt: Float
 }
@@ -39,5 +43,6 @@ type Query {
 type Mutation {
   createUser(data: UserInput): User
   deleteUser(id: ID!): User
+  updateUser(id: ID!, data: UserInput): User
   loginUser(data: LoginUserInput): User
 }

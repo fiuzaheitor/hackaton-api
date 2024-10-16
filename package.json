@@ -1,17 +1,7 @@
 {
-  "name": "branduniverse-backend",
+  "name": "hackaton-api",
   "version": "1.0.0",
   "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/enredobranding/branduniverse-backend.git"
-  },
-  "author": "itamartcjr <itamar@hi4u.me>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/enredobranding/branduniverse-backend/issues"
-  },
-  "homepage": "https://github.com/enredobranding/branduniverse-backend#readme",
   "scripts": {
     "start": "nodemon ./src/index.ts -e js,ts,tsx,gql",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,7 +13,6 @@
     "@apollo/server": "^4.3.0",
     "@graphql-tools/load-files": "^7.0.0",
     "@graphql-tools/merge": "^9.0.3",
-    "@sendgrid/mail": "^8.1.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.2",
     "glob": "^10.3.10",

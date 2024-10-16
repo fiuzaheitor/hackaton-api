@@ -4,19 +4,8 @@ import { Kids } from "../../../models/Kid";
 import auth from "../../../util/auth";
 import { create } from "lodash";
 import { VaccineCards } from "../../../models/VaccineCard";
-import resolvers from "../kids/resolvers";
 
 const VaccineCard = {
-  kid: async (vaccineCard: any) => {
-    try {
-      const kid = await Kids.findById(vaccineCard.kid);
-      if (kid) {
-        return kid;
-      }
-    } catch (err: any) {
-      throw new GraphQLError(err.message);
-    }
-  },
   createdBy: async (vaccineCard: any) => {
     try {
       const user = await Users.findById(vaccineCard.createdBy);
@@ -55,13 +44,6 @@ const Query = {
   async vaccineCards() {
     try {
       return await VaccineCards.find();
-    } catch (err: any) {
-      throw new GraphQLError(err.message);
-    }
-  },
-  async vaccineCardsByKid(_: any, { kid }: { kid: string }) {
-    try {
-      return await VaccineCards.find({ kid });
     } catch (err: any) {
       throw new GraphQLError(err.message);
     }
@@ -124,5 +106,11 @@ const Mutation = {
     return await VaccineCards.findByIdAndDelete(id);
   },
 };
+
+const resolvers = {
+    VaccineCard,
+    Query,
+    Mutation,
+}
 
 export default resolvers;
