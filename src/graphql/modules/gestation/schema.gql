@@ -1,8 +1,9 @@
 type Gestation {
-  id: ID!
-  mother: String!
-  description: String!
-  duration: Int
+  id: ID
+  description: String
+  week: Int
+  consultations: [Consultation]
+  isFinished: Boolean
   createdAt: Float
   createdBy: User
   updatedBy: User
@@ -10,20 +11,19 @@ type Gestation {
 }
 
 input GestationInput {
-  mother: String!
-  description: String!
+  description: String
   duration: Int
   createdAt: Float
   updatedAt: Float
 }
 type Query {
-  gestations: [Gestation!]!
-  gestation(id: ID!): Gestation!
+  gestations: [Gestation]
+  gestation(id: ID!): Gestation
 }
 
 type Mutation {
-  createGestation(name: String!, description: String!, duration: Int!): Gestation!
-  updateGestation(id: ID!, name: String, description: String, duration: Int): Gestation!
-  deleteGestation(id: ID!): Gestation!
+  createGestation(data: GestationInput): Gestation
+  updateGestation(id: ID!, data: GestationInput): Gestation
+  deleteGestation(id: ID!): Gestation
 }
 

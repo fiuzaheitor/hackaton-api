@@ -1,8 +1,6 @@
 type Consultation {
   id: ID!
   date: Float
-  month: Float
-  hour: Float
   createdAt: Float
   createdBy: User
   updatedBy: User
@@ -18,12 +16,12 @@ input ConsultationInput {
 }
 
 type Query {
-  consultations: [Consultation!]!
-  consultation(id: ID!): Consultation!
+  consultations: [Consultation]
+  consultation(id: ID!): Consultation
 }
 
 type Mutation {
-  createConsultation(date: Float, month: Float, hour: Float): Consultation!
-  updateConsultation(id: ID!, date: Float, month: Float, hour: Float): Consultation!
-  deleteConsultation(id: ID!): Consultation!
+  createConsultation(date: Float, month: Float, hour: Float): Consultation
+  updateConsultation(id: ID!, date: Float, month: Float, hour: Float): Consultation
+  deleteConsultation(id: ID!): Consultation
 }

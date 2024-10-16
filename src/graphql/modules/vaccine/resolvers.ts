@@ -5,16 +5,6 @@ import auth from "../../../util/auth";
 import { Vaccines } from "../../../models/Vaccine";
 
 const Vaccine = {
-  kid: async (vaccine: any) => {
-    try {
-      const kid = await Kids.findById(vaccine.kid);
-      if (kid) {
-        return kid;
-      }
-    } catch (err: any) {
-      throw new GraphQLError(err.message);
-    }
-  },
   createdBy: async (vaccine: any) => {
     try {
       const user = await Users.findById(vaccine.createdBy);
@@ -63,7 +53,6 @@ const Mutation = {
   async createVaccine(_: any, { data }: { data: any }, context: any) {
     const userAuth = auth(context);
     try {
-      const user = await auth(context);
       const newVaccine = new Kids({
         ...data,
         createdBy: typeof userAuth === "string" ? userAuth : userAuth.id,
@@ -78,11 +67,11 @@ const Mutation = {
     { id, input }: { id: string; input: any },
     context: any,
   ) {
+    const userAuth = auth(context);
     try {
-      await auth(context);
       const vaccine = await Vaccines.findByIdAndUpdate(
         id,
-        { ...input, updatedAt: Date.now() },
+        { ...input, updatedAt: Date.now(), updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id },
         { new: true },
       );
       if (vaccine) {
@@ -96,7 +85,6 @@ const Mutation = {
   },
   async deleteVaccine(_: any, { id }: { id: string }, context: any) {
     try {
-      await auth(context);
       const vaccine = await Vaccines.findByIdAndDelete(id);
       if (vaccine) {
         return vaccine;

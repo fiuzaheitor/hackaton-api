@@ -1,7 +1,6 @@
 type Vaccine {
   id: ID
   name: String
-  kid: User
   description: String
   createdAt: Float
   createdBy: User
@@ -11,7 +10,6 @@ type Vaccine {
 
 input VaccineInput {
   name: String
-  kid: ID
   description: String
   createdAt: Float
   updatedAt: Float

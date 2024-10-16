@@ -6,6 +6,13 @@ import { create } from "lodash";
 import { VaccineCards } from "../../../models/VaccineCard";
 
 const VaccineCard = {
+    vaccines: async (vaccineCard: any) => {
+        try {
+            return await VaccineCards.find({ _id: { $in: vaccineCard.vaccines } });
+        } catch (err: any) {
+            throw new GraphQLError(err.message);
+        }
+    },
   createdBy: async (vaccineCard: any) => {
     try {
       const user = await Users.findById(vaccineCard.createdBy);
@@ -52,50 +59,32 @@ const Query = {
 
 const Mutation = {
   async createVaccineCard(_: any, { data }: { data: any }, context: any) {
-    const { kid, vaccines, date, createdBy } = data;
     const userAuth = auth(context);
-
-    const vaccineCardExists = await VaccineCards.findOne({
-      kid,
-      vaccines,
-      date,
-    });
-    if (vaccineCardExists) {
-      throw new GraphQLError("Esse cartão de vacina já existe");
+    try {
+      const newVaccineCard = new VaccineCards({
+        ...data,
+        createdBy: typeof userAuth === "string" ? userAuth : userAuth.id,
+      });
+      return await newVaccineCard.save();
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
     }
-
-    const newVaccineCard = {
-      kid,
-      vaccines,
-      date,
-      createdBy: typeof userAuth === "string" ? userAuth : userAuth.id,
-    };
-
-    return await VaccineCards.create(newVaccineCard);
   },
-  async updateVaccineCard(
-    _: any,
-    { id, data }: { id: string; data: any },
-    context: any,
-  ) {
-    const { kid, vaccines, date, updatedBy } = data;
+  async updateVaccineCard(_: any, { id, data }: { id: string; data: any }, context: any) {
     const userAuth = auth(context);
-
-    const vaccineCard = await VaccineCards.findById(id);
-    if (!vaccineCard) {
-      throw new GraphQLError("Esse cartão de vacina não existe");
+    try {
+      const vaccineCard = await VaccineCards.findById(id);
+      if (!vaccineCard) {
+        throw new GraphQLError("Esse cartão de vacina não existe");
+      }
+      return await VaccineCards.findByIdAndUpdate(
+        id,
+        { ...data, updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id },
+        { new: true }
+      );
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
     }
-
-    return await VaccineCards.findByIdAndUpdate(
-      id,
-      {
-        kid,
-        vaccines,
-        date,
-        updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id,
-      },
-      { new: true },
-    );
   },
   async deleteVaccineCard(_: any, { id }: { id: string }) {
     const vaccineCard = await VaccineCards.findById(id);

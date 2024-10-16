@@ -2,8 +2,16 @@ import { GraphQLError } from "graphql";
 import { Users } from "../../../models/User";
 import auth from "../../../util/auth";
 import { Gestations } from "../../../models/Gestation";
+import { Consultations } from "../../../models/Consultation";
 
 const Gestation = {
+  consultations: async (gestation: any) => {
+    try {
+      return await Consultations.find({ _id: { $in: gestation.consultations } });
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
   createdBy: async (gestation: any) => {
     try {
       const user = await Users.findById(gestation.createdBy);
@@ -52,30 +60,29 @@ const Query = {
 const Mutation = {
     async createGestation(_: any, { data }: { data: any }, context: any) {
         try {
-            const userAuth = await auth(context);
-            const newGestation = new  Gestations({ ...data, createdBy: typeof userAuth === "string" ? userAuth : userAuth.id,});
+            const userAuth = auth(context);
+            const newGestation = new Gestations({ ...data, createdBy: typeof userAuth === "string" ? userAuth : userAuth.id,});
             return await newGestation.save();
         } catch (err: any) {
             throw new GraphQLError(err.message);
         }
     },
-    async updateGestation(_: any, { id, data: data }: { id: string, data: any }, context: any) {
+    async updateGestation(_: any, { id, data }: { id: string, data: any }, context: any) {
         try {
-            const userAuth = await auth(context);
+            const userAuth = auth(context);
             const gestation = await Gestations.findById(id);
-            if (gestation) {
-                gestation.updateOne({ ...data,updatedAt: new Date().valueOf(), updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id,});
-                return gestation;
-            } else {
-                throw new GraphQLError("Gestation não existe");
-            }
+            if (!gestation) {
+              throw new GraphQLError("Gestation não existe");
+            } 
+            
+            return Gestations.findByIdAndUpdate(id, { ...data, updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id }, {new: true});
         } catch (err: any) {
             throw new GraphQLError(err.message);
         }
     },
     async deleteGestation(_: any, { id }: { id: string }, context: any) {
         try {
-            const user = await auth(context);
+            const user = auth(context);
             const gestation = await Gestations.findById(id);
             if (gestation) {
                 gestation.deleteOne();

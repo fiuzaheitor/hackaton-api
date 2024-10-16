@@ -1,6 +1,6 @@
 type VaccineCard {
   id: ID
-  vaccine: [Vaccine]
+  vaccines: [Vaccine]
   applicationDate: Float
   createdAt: Float
   createdBy: User
@@ -9,7 +9,7 @@ type VaccineCard {
 }
 
 input VaccineCardInput {
-  vaccine: [ID]
+  vaccines: [ID]
   applicationDate: Float
   createdAt: Float
   updatedAt: Float

@@ -3,6 +3,7 @@ type User {
   name: String
   cpf: String
   kids: [Kid]
+  gestations: [Gestation]
   isActive: Boolean
   phone: String
   token: String
@@ -19,7 +20,8 @@ type User {
 input UserInput {
   name: String
   cpf: String
-  kid: [ID]
+  kids: [ID]
+  gestations: [ID]
   phone: String
   isActive: Boolean
   email: String
