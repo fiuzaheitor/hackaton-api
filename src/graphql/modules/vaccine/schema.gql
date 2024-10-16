@@ -3,6 +3,7 @@ type Vaccine {
   vaccineCard: VaccineCard
   name: String
   description: String
+  applicationDate: Float
   createdAt: Float
   createdBy: User
   updatedAt: Float
@@ -13,6 +14,7 @@ input VaccineInput {
   vaccineCard: ID
   name: String
   description: String
+  applicationDate: Float
   createdAt: Float
   updatedAt: Float
 }

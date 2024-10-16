@@ -4,6 +4,7 @@ const VaccineSchema = new Schema({
   vaccineCard: { type: Schema.Types.ObjectId, ref: "VaccineCard" },
   name: { type: String },
   description: { type: String },
+  applicationDate: { type: Number },
   createdAt: { type: Number, default: Date.now },
   updatedAt: { type: Number, default: Date.now },
   createdBy: { type: Schema.Types.ObjectId, ref: "User" },

@@ -2,7 +2,9 @@ import { model, Schema } from "mongoose";
 
 const GestationSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
+  description: { type: String },
   week: { type: Number },
+  isFinished: { type: Boolean, default: false },
   createdAt: { type: Number, default: Date.now },
   updatedAt: { type: Number, default: Date.now },
   createdBy: { type: Schema.Types.ObjectId, ref: "User" },
