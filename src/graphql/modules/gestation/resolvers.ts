@@ -5,9 +5,9 @@ import { Gestations } from "../../../models/Gestation";
 import { Consultations } from "../../../models/Consultation";
 
 const Gestation = {
-  consultations: async (gestation: any) => {
+  user: async (gestation: any) => {
     try {
-      return await Consultations.find({ _id: { $in: gestation.consultations } });
+      return await Users.findById(gestation.user);
     } catch (err: any) {
       throw new GraphQLError(err.message);
     }
@@ -55,6 +55,13 @@ const Query = {
             throw new GraphQLError(err.message);
         }
     },
+    async gestationsByMom(_: any, { userId }: { userId: string }) {
+        try {
+            return await Gestations.find({ user: userId });
+        } catch (err: any) {
+            throw new GraphQLError(err.message);
+        }
+    }
 };
 
 const Mutation = {
@@ -74,7 +81,7 @@ const Mutation = {
             if (!gestation) {
               throw new GraphQLError("Gestation não existe");
             } 
-            
+
             return Gestations.findByIdAndUpdate(id, { ...data, updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id }, {new: true});
         } catch (err: any) {
             throw new GraphQLError(err.message);

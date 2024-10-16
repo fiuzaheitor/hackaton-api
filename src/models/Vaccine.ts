@@ -1,6 +1,7 @@
 import { model, Schema } from "mongoose";
 
 const VaccineSchema = new Schema({
+  vaccineCard: { type: Schema.Types.ObjectId, ref: "VaccineCard" },
   name: { type: String },
   description: { type: String },
   createdAt: { type: Number, default: Date.now },

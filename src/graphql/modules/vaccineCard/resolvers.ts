@@ -6,10 +6,13 @@ import { create } from "lodash";
 import { VaccineCards } from "../../../models/VaccineCard";
 
 const VaccineCard = {
-    vaccines: async (vaccineCard: any) => {
+    kid: async (vaccineCard: any) => {
         try {
-            return await VaccineCards.find({ _id: { $in: vaccineCard.vaccines } });
-        } catch (err: any) {
+            const kid = await Kids.findById(vaccineCard.kid)
+            if(kid) {
+                return kid
+            }
+        } catch (err: any){
             throw new GraphQLError(err.message);
         }
     },
@@ -55,6 +58,14 @@ const Query = {
       throw new GraphQLError(err.message);
     }
   },
+  async vaccineCardByKid(_: any, { kidId }: { kidId: string }) {
+    try {
+      return await VaccineCards.find({ kid: kidId });
+    }
+    catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+    },
 };
 
 const Mutation = {

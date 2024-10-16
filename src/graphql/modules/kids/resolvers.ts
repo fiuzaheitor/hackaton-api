@@ -5,16 +5,13 @@ import auth from "../../../util/auth";
 import { VaccineCards } from "../../../models/VaccineCard";
 
 const Kid = {
-    vaccineCard: async (kid: any) => {
-    try {
-      const vaccineCard = await VaccineCards.findById(kid.vaccineCard);
-      if (vaccineCard) {
-        return vaccineCard;
-      }
-    } catch (err: any) {
-      throw new GraphQLError(err.message);
-    }
-},
+    mom: async (kid: any) => {
+        try {
+            return await Users.findById(kid.mom);
+        } catch (err: any) {
+            throw new GraphQLError(err.message);
+        }
+    },
   createdBy: async (kid: any) => {
     try {
       const user = await Users.findById(kid.createdBy);
@@ -54,6 +51,14 @@ const Query = {
     try {
       return await Kids.find();
     } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
+  async kidsByMom(_: any, { momId }: { momId: string }) {
+    try {
+      return await Kids.find({ mom: momId });
+    }
+    catch (err: any) {
       throw new GraphQLError(err.message);
     }
   },

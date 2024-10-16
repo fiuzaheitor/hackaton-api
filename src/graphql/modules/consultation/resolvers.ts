@@ -47,6 +47,13 @@ const Query = {
             throw new GraphQLError(err.message);
         }
     },
+    async consultationsByGestation(_: any, { gestationId }: { gestationId: string }) {
+        try {
+            return await Consultations.find({ gestation: gestationId });
+        } catch (err: any) {
+            throw new GraphQLError(err.message);
+        }
+    },
 };
 
 const Mutation = {

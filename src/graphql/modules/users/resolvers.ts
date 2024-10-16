@@ -5,20 +5,6 @@ import auth from "../../../util/auth";
 import { Users } from "../../../models/User";
 
 const User = {
-  kids: async (user: any) => {
-    try {
-      return await Users.find({ _id: { $in: user.kids } });
-    } catch (error: any) {
-      throw new GraphQLError(error);
-    }
-  },
-  gestations: async (user: any) => {
-    try {
-      return await Users.find({ _id: { $in: user.gestations } });
-    } catch (error: any) {
-      throw new GraphQLError(error);
-    }
-  },
   createdBy: async (user: any) => {
     try {
       const u = await Users.findById(user.createdBy);
@@ -136,8 +122,6 @@ const Mutation = {
         {
           name,
           cpf,
-          kids,
-          gestations,
           phone,
           isActive,
           email,

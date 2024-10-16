@@ -3,8 +3,16 @@ import { Users } from "../../../models/User";
 import { Kids } from "../../../models/Kid";
 import auth from "../../../util/auth";
 import { Vaccines } from "../../../models/Vaccine";
+import { VaccineCards } from "../../../models/VaccineCard";
 
 const Vaccine = {
+  vaccineCard: async (vaccine: any) => {
+    try {
+      return await VaccineCards.findById(vaccine.vaccineCard);
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
   createdBy: async (vaccine: any) => {
     try {
       const user = await Users.findById(vaccine.createdBy);
@@ -47,6 +55,13 @@ const Query = {
       throw new GraphQLError(err.message);
     }
   },
+  async vaccinesByVaccineCard(_: any, { vaccineCardId }: { vaccineCardId: string }) {
+    try {
+      return await Vaccines.find({ vaccineCard: vaccineCardId });
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  }
 };
 
 const Mutation = {

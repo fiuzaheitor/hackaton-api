@@ -1,5 +1,6 @@
 type Vaccine {
   id: ID
+  vaccineCard: VaccineCard
   name: String
   description: String
   createdAt: Float
@@ -9,6 +10,7 @@ type Vaccine {
 }
 
 input VaccineInput {
+  vaccineCard: ID
   name: String
   description: String
   createdAt: Float
@@ -18,6 +20,7 @@ input VaccineInput {
 type Query {
   vaccine(id: ID!): Vaccine
   vaccines: [Vaccine]
+  vaccinesByVaccineCard(vaccineCardId: ID!): [Vaccine]
 }
 
 type Mutation {

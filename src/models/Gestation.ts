@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 const GestationSchema = new Schema({
-  mother: { type: Schema.Types.ObjectId, ref: 'User' },
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
   week: { type: Number },
   createdAt: { type: Number, default: Date.now },
   updatedAt: { type: Number, default: Date.now },
