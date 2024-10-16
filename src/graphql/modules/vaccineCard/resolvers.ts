@@ -4,7 +4,6 @@ import { Kids } from "../../../models/Kid";
 import auth from "../../../util/auth";
 import { create } from "lodash";
 import { VaccineCards } from "../../../models/VaccineCard";
-import resolvers from "../kids/resolvers";
 
 const VaccineCard = {
   createdBy: async (vaccineCard: any) => {
@@ -107,5 +106,11 @@ const Mutation = {
     return await VaccineCards.findByIdAndDelete(id);
   },
 };
+
+const resolvers = {
+    VaccineCard,
+    Query,
+    Mutation,
+}
 
 export default resolvers;
