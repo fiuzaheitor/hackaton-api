@@ -16,9 +16,6 @@ input GestationInput {
   createdAt: Float
   updatedAt: Float
 }
-
-
-
 type Query {
   gestations: [Gestation!]!
   gestation(id: ID!): Gestation!

@@ -1,0 +1,29 @@
+type Consultation {
+  id: ID!
+  date: Float
+  month: Float
+  hour: Float
+  createdAt: Float
+  createdBy: User
+  updatedBy: User
+  updatedAt: Float
+}
+
+input ConsultationInput {
+  date: Float
+  month: Float
+  hour: Float
+  createdAt: Float
+  updatedAt: Float
+}
+
+type Query {
+  consultations: [Consultation!]!
+  consultation(id: ID!): Consultation!
+}
+
+type Mutation {
+  createConsultation(date: Float, month: Float, hour: Float): Consultation!
+  updateConsultation(id: ID!, date: Float, month: Float, hour: Float): Consultation!
+  deleteConsultation(id: ID!): Consultation!
+}
