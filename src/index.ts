@@ -3,6 +3,8 @@ import http from "http";
 import { startApolloServer } from "./server/apollo";
 import cors from "cors";
 import { Consultations } from "./models/Consultation";
+import { Gestations } from "./models/Gestation";
+import { Users } from "./models/User";
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -34,63 +36,61 @@ const sendMessage = async (message: string, phone: string) => {
 const fs = require('fs').promises; // Importar o módulo fs para leitura de arquivos
 
 const sendMessagesToAllNecessities = async () => {
-  const getConsultationType = (week: number) => {
-    if (week >= 16 && week <= 20) {
-      return "segunda";
-    } else if (week >= 24 && week <= 28) {
-      return "terceira";
-    } else if (week > 28 && week <= 32) {
-      return "quarta";
-    } else if (week > 32 && week <= 36) {
-      return "quinta";
-    } else if (week == 36) {
-      return "sexta";
-    } else if(week == 37) {
-      return "setima";
-    } else if(week == 38) {
-      return "oitava";
-    } else if(week == 39) {
-      return "nona";
-    } else if(week == 40) {
-      return "decima";
-    } else if(week == 41) {
-      return "decimaPrimeira";
-    }
+  const getConsultationType = (week: any) => {
+    if (week >= 16 && week <= 20) return "segunda";
+    if (week >= 24 && week <= 28) return "terceira";
+    if (week > 28 && week <= 32) return "quarta";
+    if (week > 32 && week <= 36) return "quinta";
+    if (week === 36) return "sexta";
+    if (week === 37) return "setima";
+    if (week === 38) return "oitava";
+    if (week === 39) return "nona";
+    if (week === 40) return "decima";
+    if (week === 41) return "decimaPrimeira";
     return "default";
-  }
+  };
 
   try {
     const consultations = await Consultations.find();
-    const messages = JSON.parse(await fs.readFile('./consultationMessages.json', 'utf-8')); // Ler o arquivo JSON
+    const messages = JSON.parse(await fs.readFile('./src/consultationMessages.json', 'utf-8'));
+
     const calculateDifference = (date: any) => {
-      const currentDate = new Date();
-      const consultationDate = new Date(date);
-      const difference = consultationDate.getTime() - currentDate.getTime();
-      const days = Math.ceil(difference / (1000 * 3600 * 24));
-      return days;
+      const currentDate: any = new Date();
+      const consultationDate: any = new Date(date);
+      return Math.ceil((consultationDate - currentDate) / (1000 * 3600 * 24));
     };
 
-    const filteredConsultations = consultations.filter((consultation) => {
-      return calculateDifference(consultation.date) <= 7;
-    });
+    const filteredConsultations = consultations.filter(
+      (consultation) => calculateDifference(consultation.date) <= 7
+    );
 
-    filteredConsultations.map((consultation: any) => {
-      // Obter a mensagem baseada no tipo de consulta
-      const consultationType = getConsultationType(consultation?.week); // Converter o tipo para minúsculas
+    for (const consultation of filteredConsultations) {
+      const consultationType = getConsultationType(consultation.week);
       const messageBody = messages.consultations[consultationType]?.message || "Mensagem padrão: Lembrete de consulta.";
-      
-      // Enviar a mensagem
-      sendMessage(
-        `Olá, ${consultation?.gestation?.user?.name}! ${messageBody}\nEla acontecerá no dia ${new Date(consultation.date).toLocaleDateString("pt-br", {day: "numeric", month: "numeric", year: "numeric"})}, daqui ${calculateDifference(consultation.date)} dias, aguardamos sua presença!`,
-        consultation.gestation.user.phone
-      );
-    });
+
+      try {
+        const gestation: any = await Gestations.findById(consultation.gestation);
+        const user: any = await Users.findById(gestation.user);
+
+        await sendMessage(
+          `Olá, ${user?.name}! ${messageBody}\nEla acontecerá no dia ${new Date(
+            consultation.date
+          ).toLocaleDateString("pt-br", { day: "numeric", month: "numeric", year: "numeric" })}, daqui ${calculateDifference(
+            consultation.date
+          )} dias, aguardamos sua presença!`,
+          "6384496743"
+        );
+      } catch (error) {
+        console.error("Erro ao enviar mensagem para consulta:", error);
+      }
+    }
   } catch (error) {
-    console.error(error);
+    console.error("Erro ao processar as consultas:", error);
   }
 };
 
-cron.schedule('0 6 * * *', sendMessagesToAllNecessities, {
+
+cron.schedule('26 7 * * *', sendMessagesToAllNecessities, {
   scheduled: true,
   timezone: "America/Sao_Paulo"
 });

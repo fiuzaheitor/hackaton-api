@@ -8,7 +8,7 @@ import { VaccineCards } from "../../../models/VaccineCard";
 const Vaccine = {
   vaccineTemplate: async (vaccine: any) => {
     try {
-      return await VaccineCards.findById(vaccine.vaccineTemplate);
+      return await VaccineTemplates.findById(vaccine.vaccineTemplate);
     } catch (err: any) {
       throw new GraphQLError(err.message);
     }

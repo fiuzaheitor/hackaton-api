@@ -4,6 +4,7 @@ type Vaccine {
   vaccineTemplate: VaccineTemplate
   description: String
   applicationDate: Float
+  isFinished: Boolean
   createdAt: Float
   createdBy: User
   updatedAt: Float
@@ -26,6 +27,7 @@ input VaccineInput {
   vaccineTemplate: ID
   description: String
   applicationDate: Float
+  isFinished: Boolean
   createdAt: Float
   updatedAt: Float
 }
