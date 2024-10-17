@@ -1,35 +1,34 @@
 {
-    "consultations": {
-      "segunda": {
-        "message": "Oi, mamãe! A segunda consulta pré-natal, idealmente entre a 16ª e 20ª semana, é muito importante para a saúde sua e do seu bebê. Nessa etapa, você terá a oportunidade de realizar exames de sangue, monitorar o desenvolvimento fetal e discutir quaisquer sintomas ou preocupações que possa ter.\n\nO não comparecimento a essa consulta pode trazer riscos, como a falta de avaliação do crescimento do seu bebê e a ausência de acompanhamento de possíveis complicações, como anemias ou infecções. Além disso, é uma chance crucial para receber orientações sobre cuidados com a saúde, dieta e atividade física, que são fundamentais para uma gestação saudável.\n\nCompareça em sua consulta e continue cuidando da sua gestação!"
-      },
-      "terceira": {
-        "message": "Oi, mamãe! A terceira consulta pré-natal, que deve acontecer entre a 24ª e 28ª semana, é uma etapa fundamental na sua gestação. Durante essa consulta, você terá a chance de realizar exames, como o teste de glicose, e monitorar o desenvolvimento do seu bebê, além de discutir quaisquer preocupações que surgirem.\n\nO não comparecimento pode trazer riscos sérios, como a falta de diagnóstico de condições como diabetes gestacional, que pode afetar tanto a sua saúde quanto a do seu bebê. Além disso, essa consulta é um momento importante para avaliar o crescimento fetal e garantir que tudo esteja progredindo bem.\n\nCompareça em sua consulta e continue a cuidar da sua saúde e do seu pequeno!"
-      },
-      "quarta": {
-        "message": "Oi, mamãe! A quarta consulta pré-natal, que deve ocorrer entre a 28ª e 32ª semana, é essencial para garantir a saúde sua e do seu bebê. Nessa etapa, você fará avaliações importantes, como o acompanhamento do crescimento fetal e a verificação de possíveis sinais de complicações.\n\nO não comparecimento a essa consulta pode aumentar os riscos de problemas como hipertensão gestacional ou complicações relacionadas ao desenvolvimento do bebê. Além disso, é um momento valioso para discutir suas dúvidas sobre a preparação para o parto e receber orientações sobre cuidados pós-natais.\n\nCompareça em sua consulta e continue a cuidar de você e do seu pequeno!"
-      },
-      "quinta": {
-        "message": "Oi, mamãe! A quinta consulta pré-natal, que deve ser feita entre a 32ª e 36ª semana, é um momento crucial na sua gestação. Durante essa consulta, você irá monitorar o desenvolvimento do seu bebê e avaliar sua saúde, além de discutir o plano de parto e as expectativas para as próximas semanas.\n\nO não comparecimento a essa consulta pode trazer riscos, como a falta de identificação de possíveis complicações, como alterações na pressão arterial ou sinais de pré-eclâmpsia. Além disso, é uma oportunidade para esclarecer dúvidas sobre os cuidados com o recém-nascido e o que esperar no momento do parto.\n\nCompareça em sua consulta e continue cuidando de você e do seu pequeno!"
-      },
-      "sexta": {
-        "message": "Oi, mamãe! A sexta consulta pré-natal, que deve ocorrer entre a 36ª e 40ª semana, é um passo muito importante na reta final da sua gestação. Nessa consulta, você fará uma avaliação detalhada do bem-estar do seu bebê e da sua saúde, além de discutir os sinais de parto e o que esperar nos próximos dias.\n\nO não comparecimento pode resultar na falta de identificação de problemas potenciais, como a posição do bebê ou sinais de trabalho de parto prematuro. É também um momento vital para esclarecer quaisquer preocupações sobre o parto e receber orientações sobre os cuidados imediatos com o recém-nascido.\n\nCompareça em sua consulta e continue a cuidar de vocês!"
-      },
-      "setima": {
-        "message": "Oi, mamãe! A sétima consulta pré-natal, que deve acontecer na 37ª semana, é fundamental para acompanhar os últimos detalhes da sua gestação. Durante essa consulta, você fará uma avaliação do bem-estar do bebê e verificará sinais de que o parto pode estar próximo.\n\nO não comparecimento pode resultar em perder a oportunidade de identificar complicações, como a posição do bebê ou problemas na placenta. É um momento ideal para discutir o plano de parto e se preparar para a chegada do seu pequeno.\n\nCompareça em sua consulta e continue cuidando de vocês!"
-      },
-      "oitava": {
-        "message": "Oi, mamãe! A oitava consulta pré-natal, na 38ª semana, é uma etapa crucial para monitorar a saúde sua e do seu bebê. Nessa consulta, você fará uma avaliação detalhada e poderá receber orientações sobre o que esperar nas próximas semanas.\n\nO não comparecimento pode levar à falta de identificação de complicações que podem surgir próximo ao parto. É também um bom momento para discutir suas preocupações e garantir que você esteja preparada para a chegada do seu pequeno.\n\nCompareça em sua consulta e cuide de vocês!"
-      },
-      "nona": {
-        "message": "Oi, mamãe! A nona consulta pré-natal, que deve ocorrer na 39ª semana, é essencial para os últimos preparativos antes do parto. Durante essa consulta, será feita uma avaliação do bem-estar do seu bebê e da sua saúde, além de discutir sinais de parto e o que esperar.\n\nO não comparecimento pode resultar em não identificar problemas que podem afetar a saúde do seu bebê ou sua. É também uma chance de esclarecer dúvidas e ajustar o plano de parto.\n\nCompareça em sua consulta e continue a cuidar de vocês!"
-      },
-      "decima": {
-        "message": "Oi, mamãe! A décima consulta pré-natal, na 40ª semana, é um momento decisivo na sua gestação. Aqui, você fará uma avaliação final do bem-estar do seu bebê e discutirá os próximos passos, incluindo a possibilidade de indução do parto, se necessário.\n\nO não comparecimento pode levar à falta de monitoramento das condições que podem afetar você e seu bebê. É uma oportunidade valiosa para garantir que tudo esteja pronto para a chegada do seu pequeno.\n\nNão deixe de agendar sua consulta e cuide de vocês!"
-      },
-      "decimaPrimeira": {
-        "message": "Oi, mamãe! A décima primeira consulta pré-natal, que deve ser feita na 41ª semana, é uma etapa muito importante para monitorar sua saúde e a do seu bebê. Durante essa consulta, os médicos avaliarão a necessidade de intervenções, como a indução do parto.\n\nO não comparecimento pode resultar na falta de identificação de complicações que exigem atenção imediata. É uma chance de garantir que você esteja bem informada e preparada para a chegada do seu pequeno.\n\nCompareça em sua consulta e cuide de você e do seu bebê!"
-      }
+  "consultations": {
+    "segunda": {
+      "message": "Oi, mamãe! A segunda consulta pré-natal, idealmente entre a 16ª e 20ª semana, é muito importante para a saúde sua e do seu bebê. Nessa etapa, você terá a oportunidade de realizar exames de sangue, monitorar o desenvolvimento fetal e discutir quaisquer sintomas ou preocupações que possa ter.\n\nO não comparecimento a essa consulta pode trazer riscos, como a falta de avaliação do crescimento do seu bebê e a ausência de acompanhamento de possíveis complicações, como anemias ou infecções. Além disso, é uma chance crucial para receber orientações sobre cuidados com a saúde, dieta e atividade física, que são fundamentais para uma gestação saudável.\n\nCompareça em sua consulta e continue cuidando da sua gestação!"
+    },
+    "terceira": {
+      "message": "Oi, mamãe! A terceira consulta pré-natal, que deve acontecer entre a 24ª e 28ª semana, é uma etapa fundamental na sua gestação. Durante essa consulta, você terá a chance de realizar exames, como o teste de glicose, e monitorar o desenvolvimento do seu bebê, além de discutir quaisquer preocupações que surgirem.\n\nO não comparecimento pode trazer riscos sérios, como a falta de diagnóstico de condições como diabetes gestacional, que pode afetar tanto a sua saúde quanto a do seu bebê. Além disso, essa consulta é um momento importante para avaliar o crescimento fetal e garantir que tudo esteja progredindo bem.\n\nCompareça em sua consulta e continue a cuidar da sua saúde e do seu pequeno!"
+    },
+    "quarta": {
+      "message": "Oi, mamãe! A quarta consulta pré-natal, que deve ocorrer entre a 28ª e 32ª semana, é essencial para garantir a saúde sua e do seu bebê. Nessa etapa, você fará avaliações importantes, como o acompanhamento do crescimento fetal e a verificação de possíveis sinais de complicações.\n\nO não comparecimento a essa consulta pode aumentar os riscos de problemas como hipertensão gestacional ou complicações relacionadas ao desenvolvimento do bebê. Além disso, é um momento valioso para discutir suas dúvidas sobre a preparação para o parto e receber orientações sobre cuidados pós-natais.\n\nCompareça em sua consulta e continue a cuidar de você e do seu pequeno!"
+    },
+    "quinta": {
+      "message": "Oi, mamãe! A quinta consulta pré-natal, que deve ser feita entre a 32ª e 36ª semana, é um momento crucial na sua gestação. Durante essa consulta, você irá monitorar o desenvolvimento do seu bebê e avaliar sua saúde, além de discutir o plano de parto e as expectativas para as próximas semanas.\n\nO não comparecimento a essa consulta pode trazer riscos, como a falta de identificação de possíveis complicações, como alterações na pressão arterial ou sinais de pré-eclâmpsia. Além disso, é uma oportunidade para esclarecer dúvidas sobre os cuidados com o recém-nascido e o que esperar no momento do parto.\n\nCompareça em sua consulta e continue cuidando de você e do seu pequeno!"
+    },
+    "sexta": {
+      "message": "Oi, mamãe! A sexta consulta pré-natal, que deve ocorrer entre a 36ª e 40ª semana, é um passo muito importante na reta final da sua gestação. Nessa consulta, você fará uma avaliação detalhada do bem-estar do seu bebê e da sua saúde, além de discutir os sinais de parto e o que esperar nos próximos dias.\n\nO não comparecimento pode resultar na falta de identificação de problemas potenciais, como a posição do bebê ou sinais de trabalho de parto prematuro. É também um momento vital para esclarecer quaisquer preocupações sobre o parto e receber orientações sobre os cuidados imediatos com o recém-nascido.\n\nCompareça em sua consulta e continue a cuidar de vocês!"
+    },
+    "setima": {
+      "message": "Oi, mamãe! A sétima consulta pré-natal, que deve acontecer na 37ª semana, é fundamental para acompanhar os últimos detalhes da sua gestação. Durante essa consulta, você fará uma avaliação do bem-estar do bebê e verificará sinais de que o parto pode estar próximo.\n\nO não comparecimento pode resultar em perder a oportunidade de identificar complicações, como a posição do bebê ou problemas na placenta. É um momento ideal para discutir o plano de parto e se preparar para a chegada do seu pequeno.\n\nCompareça em sua consulta e continue cuidando de vocês!"
+    },
+    "oitava": {
+      "message": "Oi, mamãe! A oitava consulta pré-natal, na 38ª semana, é uma etapa crucial para monitorar a saúde sua e do seu bebê. Nessa consulta, você fará uma avaliação detalhada e poderá receber orientações sobre o que esperar nas próximas semanas.\n\nO não comparecimento pode levar à falta de identificação de complicações que podem surgir próximo ao parto. É também um bom momento para discutir suas preocupações e garantir que você esteja preparada para a chegada do seu pequeno.\n\nCompareça em sua consulta e cuide de vocês!"
+    },
+    "nona": {
+      "message": "Oi, mamãe! A nona consulta pré-natal, que deve ocorrer na 39ª semana, é essencial para os últimos preparativos antes do parto. Durante essa consulta, será feita uma avaliação do bem-estar do seu bebê e da sua saúde, além de discutir sinais de parto e o que esperar.\n\nO não comparecimento pode resultar em não identificar problemas que podem afetar a saúde do seu bebê ou sua. É também uma chance de esclarecer dúvidas e ajustar o plano de parto.\n\nCompareça em sua consulta e continue a cuidar de vocês!"
+    },
+    "decima": {
+      "message": "Oi, mamãe! A décima consulta pré-natal, na 40ª semana, é um momento decisivo na sua gestação. Aqui, você fará uma avaliação final do bem-estar do seu bebê e discutirá os próximos passos, incluindo a possibilidade de indução do parto, se necessário.\n\nO não comparecimento pode levar à falta de monitoramento das condições que podem afetar você e seu bebê. É uma oportunidade valiosa para garantir que tudo esteja pronto para a chegada do seu pequeno.\n\nNão deixe de agendar sua consulta e cuide de vocês!"
+    },
+    "decimaPrimeira": {
+      "message": "Oi, mamãe! A décima primeira consulta pré-natal, que deve ser feita na 41ª semana, é uma etapa muito importante para monitorar sua saúde e a do seu bebê. Durante essa consulta, os médicos avaliarão a necessidade de intervenções, como a indução do parto.\n\nO não comparecimento pode resultar na falta de identificação de complicações que exigem atenção imediata. É uma chance de garantir que você esteja bem informada e preparada para a chegada do seu pequeno.\n\nCompareça em sua consulta e cuide de você e do seu bebê!"
     }
   }
-  
+}

@@ -8,7 +8,7 @@ import { sendMessage } from "./services/messageService";
 const app = express();
 const httpServer = http.createServer(app);
 
-const cron = require('node-cron');
+const cron = require("node-cron");
 require("dotenv").config();
 
 app.use(cors());
@@ -22,11 +22,11 @@ app.post("/send-message", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Erro ao enviar mensagem!" });
   }
-})
+});
 
-cron.schedule('58 11 * * *', sendMessagesToAllNecessities, {
+cron.schedule("58 11 * * *", sendMessagesToAllNecessities, {
   scheduled: true,
-  timezone: "America/Sao_Paulo"
+  timezone: "America/Sao_Paulo",
 });
 
 async function startServer() {

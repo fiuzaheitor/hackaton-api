@@ -1,5 +1,5 @@
-import { Twilio } from 'twilio';
-import dotenv from 'dotenv';
+import { Twilio } from "twilio";
+import dotenv from "dotenv";
 
 dotenv.config();
 

@@ -27,9 +27,6 @@ type Query {
 
 type Mutation {
   createConsultation(data: ConsultationInput): Consultation
-  updateConsultation(
-    id: ID!
-    data: ConsultationInput!
-  ): Consultation
+  updateConsultation(id: ID!, data: ConsultationInput!): Consultation
   deleteConsultation(id: ID!): Consultation
 }
