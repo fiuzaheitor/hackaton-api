@@ -1,7 +1,7 @@
 type Vaccine {
   id: ID
   vaccineCard: VaccineCard
-  name: String
+  vaccineTemplate: VaccineTemplate
   description: String
   applicationDate: Float
   createdAt: Float
@@ -10,11 +10,28 @@ type Vaccine {
   updatedBy: User
 }
 
-input VaccineInput {
-  vaccineCard: ID
+type VaccineTemplate {
+  id: ID
   name: String
   description: String
+  createdAt: Float
+  createdBy: User
+  updatedAt: Float
+  updatedBy: User
+}
+
+input VaccineInput {
+  vaccineCard: ID
+  vaccineTemplate: ID
+  description: String
   applicationDate: Float
+  createdAt: Float
+  updatedAt: Float
+}
+
+input VaccineTemplateInput {
+  name: String
+  description: String
   createdAt: Float
   updatedAt: Float
 }
@@ -23,10 +40,15 @@ type Query {
   vaccine(id: ID!): Vaccine
   vaccines: [Vaccine]
   vaccinesByVaccineCard(vaccineCardId: ID!): [Vaccine]
+  vaccineTemplate(id: ID!): VaccineTemplate
+  vaccineTemplates: [VaccineTemplate]
 }
 
 type Mutation {
   createVaccine(data: VaccineInput): Vaccine
   deleteVaccine(id: ID!): Vaccine
   updateVaccine(id: ID!, data: VaccineInput): Vaccine
+  createVaccineTemplate(data: VaccineTemplateInput): VaccineTemplate
+  deleteVaccineTemplate(id: ID!): VaccineTemplate
+  updateVaccineTemplate(id: ID!, data: VaccineTemplateInput): VaccineTemplate
 }

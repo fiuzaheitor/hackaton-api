@@ -6,6 +6,13 @@ import { Vaccines } from "../../../models/Vaccine";
 import { VaccineCards } from "../../../models/VaccineCard";
 
 const Vaccine = {
+  vaccineTemplate: async (vaccine: any) => {
+    try {
+      return await VaccineCards.findById(vaccine.vaccineTemplate);
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
   vaccineCard: async (vaccine: any) => {
     try {
       return await VaccineCards.findById(vaccine.vaccineCard);
@@ -26,6 +33,29 @@ const Vaccine = {
   updatedBy: async (vaccine: any) => {
     try {
       const user = await Users.findById(vaccine.updatedBy);
+      if (user) {
+        return user;
+      }
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
+};
+
+const VaccineTemplate = {
+  createdBy: async (vaccineTemplate: any) => {
+    try {
+      const user = await Users.findById(vaccineTemplate.createdBy);
+      if (user) {
+        return user;
+      }
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
+  updatedBy: async (vaccineTemplate: any) => {
+    try {
+      const user = await Users.findById(vaccineTemplate.updatedBy);
       if (user) {
         return user;
       }
@@ -61,6 +91,25 @@ const Query = {
   ) {
     try {
       return await Vaccines.find({ vaccineCard: vaccineCardId });
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
+  async vaccineTemplate(_: any, { id }: { id: string }, context: any) {
+    try {
+      const vaccineTemplate = await VaccineCards.findById(id);
+      if (vaccineTemplate) {
+        return vaccineTemplate;
+      } else {
+        throw new GraphQLError("Esse modelo de vacina não existe");
+      }
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
+  async vaccineTemplates() {
+    try {
+      return await VaccineCards.find();
     } catch (err: any) {
       throw new GraphQLError(err.message);
     }
@@ -112,6 +161,55 @@ const Mutation = {
         return vaccine;
       } else {
         throw new GraphQLError("Essa vacina não existe");
+      }
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
+  async createVaccineTemplate(_: any, { data }: { data: any }, context: any) {
+    const userAuth = auth(context);
+    try {
+      const newVaccineTemplate = new VaccineCards({
+        ...data,
+        createdBy: typeof userAuth === "string" ? userAuth : userAuth.id,
+      });
+      return await newVaccineTemplate.save();
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
+  async updateVaccineTemplate(
+    _: any,
+    { id, input }: { id: string; input: any },
+    context: any,
+  ) {
+    const userAuth = auth(context);
+    try {
+      const vaccineTemplate = await VaccineCards.findByIdAndUpdate(
+        id,
+        {
+          ...input,
+          updatedAt: Date.now(),
+          updatedBy: typeof userAuth === "string" ? userAuth : userAuth.id,
+        },
+        { new: true },
+      );
+      if (vaccineTemplate) {
+        return vaccineTemplate;
+      } else {
+        throw new GraphQLError("Esse modelo de vacina não existe");
+      }
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
+  async deleteVaccineTemplate(_: any, { id }: { id: string }, context: any) {
+    try {
+      const vaccineTemplate = await VaccineCards.findByIdAndDelete(id);
+      if (vaccineTemplate) {
+        return vaccineTemplate;
+      } else {
+        throw new GraphQLError("Esse modelo de vacina não existe");
       }
     } catch (err: any) {
       throw new GraphQLError(err.message);
