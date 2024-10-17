@@ -34,9 +34,34 @@ const sendMessage = async (message: string, phone: string) => {
 const fs = require('fs').promises; // Importar o módulo fs para leitura de arquivos
 
 const sendMessagesToAllNecessities = async () => {
+  const getConsultationType = (week: number) => {
+    if (week >= 16 && week <= 20) {
+      return "segunda";
+    } else if (week >= 24 && week <= 28) {
+      return "terceira";
+    } else if (week > 28 && week <= 32) {
+      return "quarta";
+    } else if (week > 32 && week <= 36) {
+      return "quinta";
+    } else if (week == 36) {
+      return "sexta";
+    } else if(week == 37) {
+      return "setima";
+    } else if(week == 38) {
+      return "oitava";
+    } else if(week == 39) {
+      return "nona";
+    } else if(week == 40) {
+      return "decima";
+    } else if(week == 41) {
+      return "decimaPrimeira";
+    }
+    return "default";
+  }
+
   try {
     const consultations = await Consultations.find();
-    const messages = JSON.parse(await fs.readFile('consultationMessages.json', 'utf-8')); // Ler o arquivo JSON
+    const messages = JSON.parse(await fs.readFile('./consultationMessages.json', 'utf-8')); // Ler o arquivo JSON
     const calculateDifference = (date: any) => {
       const currentDate = new Date();
       const consultationDate = new Date(date);
@@ -51,7 +76,7 @@ const sendMessagesToAllNecessities = async () => {
 
     filteredConsultations.map((consultation: any) => {
       // Obter a mensagem baseada no tipo de consulta
-      const consultationType = consultation.type.toLowerCase(); // Converter o tipo para minúsculas
+      const consultationType = getConsultationType(consultation?.week); // Converter o tipo para minúsculas
       const messageBody = messages.consultations[consultationType]?.message || "Mensagem padrão: Lembrete de consulta.";
       
       // Enviar a mensagem
@@ -65,7 +90,7 @@ const sendMessagesToAllNecessities = async () => {
   }
 };
 
-cron.schedule('0 5 * * *', sendMessagesToAllNecessities, {
+cron.schedule('0 6 * * *', sendMessagesToAllNecessities, {
   scheduled: true,
   timezone: "America/Sao_Paulo"
 });

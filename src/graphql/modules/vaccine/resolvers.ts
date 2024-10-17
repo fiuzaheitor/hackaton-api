@@ -97,7 +97,7 @@ const Query = {
   },
   async vaccineTemplate(_: any, { id }: { id: string }, context: any) {
     try {
-      const vaccineTemplate = await VaccineCards.findById(id);
+      const vaccineTemplate = await VaccineTemplates.findById(id);
       if (vaccineTemplate) {
         return vaccineTemplate;
       } else {
@@ -109,7 +109,7 @@ const Query = {
   },
   async vaccineTemplates() {
     try {
-      return await VaccineCards.find();
+      return await VaccineTemplates.find();
     } catch (err: any) {
       throw new GraphQLError(err.message);
     }
