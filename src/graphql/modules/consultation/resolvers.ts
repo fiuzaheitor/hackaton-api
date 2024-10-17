@@ -2,8 +2,16 @@ import { GraphQLError } from "graphql";
 import { Users } from "../../../models/User";
 import auth from "../../../util/auth";
 import { Consultations } from "../../../models/Consultation";
+import { Gestations } from "../../../models/Gestation";
 
 const Consultation = {
+  gestation: async (consultation: any) => {
+    try {
+      return await Gestations.findById(consultation.gestation);
+    } catch (err: any) {
+      throw new GraphQLError(err.message);
+    }
+  },
   createdBy: async (consultation: any) => {
     try {
       const user = await Users.findById(consultation.createdBy);
@@ -51,7 +59,7 @@ const Query = {
     { gestationId }: { gestationId: string },
   ) {
     try {
-      return await Consultations.find({ gestation: gestationId }).sort({week: "asc"});
+      return await Consultations.find({ gestation: gestationId });
     } catch (err: any) {
       throw new GraphQLError(err.message);
     }

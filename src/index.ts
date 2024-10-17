@@ -6,31 +6,24 @@ import cors from "cors";
 const app = express();
 const httpServer = http.createServer(app);
 
-const sgMail = require("@sendgrid/mail");
+const accountSid = 'ACa9f6221afee55850af4dd9a2f937eed4';
+const authToken = '08faa2d65bf0121167d2580aac124055';
+const client = require('twilio')(accountSid, authToken);
 require("dotenv").config();
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 app.use(cors());
 app.use(express.json());
 
-app.post("/send-email", async (req, res) => {
-  const { email, subject, message } = req.body;
-  const msg = {
-    to: email,
-    from: "heitorfiuzabr@gmail.com",
-    subject: subject,
-    text: message,
-    html: `<strong>${message}</strong>`,
-  };
-
-  try {
-    await sgMail.send(msg);
-    res.status(200).send("Email sent successfully");
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error sending email");
-  }
+app.post("/send-message", async (req, res) => {
+  client.messages
+      .create({
+          from: 'whatsapp:+14155238886',
+          contentSid: 'HXb5b62575e6e4ff6129ad7c8efe1f983e',
+          contentVariables: '{"1":"12/1","2":"3pm"}',
+          to: 'whatsapp:+556384496743'
+      })
+      .then((message: any) => console.log(message.sid))
+      .done();
 });
 
 async function startServer() {
