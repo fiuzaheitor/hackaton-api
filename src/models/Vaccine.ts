@@ -14,6 +14,7 @@ const VaccineSchema = new Schema({
 const VaccineTemplateSchema = new Schema({
   name: { type: String },
   description: { type: String },
+  applicationDate: { type: Number },
   createdAt: { type: Number, default: Date.now },
   updatedAt: { type: Number, default: Date.now },
   createdBy: { type: Schema.Types.ObjectId, ref: "User" },

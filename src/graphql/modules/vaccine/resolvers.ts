@@ -2,7 +2,7 @@ import { GraphQLError } from "graphql";
 import { Users } from "../../../models/User";
 import { Kids } from "../../../models/Kid";
 import auth from "../../../util/auth";
-import { Vaccines } from "../../../models/Vaccine";
+import { Vaccines, VaccineTemplates } from "../../../models/Vaccine";
 import { VaccineCards } from "../../../models/VaccineCard";
 
 const Vaccine = {
@@ -120,7 +120,7 @@ const Mutation = {
   async createVaccine(_: any, { data }: { data: any }, context: any) {
     const userAuth = auth(context);
     try {
-      const newVaccine = new Kids({
+      const newVaccine = new Vaccines({
         ...data,
         createdBy: typeof userAuth === "string" ? userAuth : userAuth.id,
       });
@@ -169,7 +169,7 @@ const Mutation = {
   async createVaccineTemplate(_: any, { data }: { data: any }, context: any) {
     const userAuth = auth(context);
     try {
-      const newVaccineTemplate = new VaccineCards({
+      const newVaccineTemplate = new VaccineTemplates({
         ...data,
         createdBy: typeof userAuth === "string" ? userAuth : userAuth.id,
       });
@@ -185,7 +185,7 @@ const Mutation = {
   ) {
     const userAuth = auth(context);
     try {
-      const vaccineTemplate = await VaccineCards.findByIdAndUpdate(
+      const vaccineTemplate = await VaccineTemplates.findByIdAndUpdate(
         id,
         {
           ...input,
@@ -205,7 +205,7 @@ const Mutation = {
   },
   async deleteVaccineTemplate(_: any, { id }: { id: string }, context: any) {
     try {
-      const vaccineTemplate = await VaccineCards.findByIdAndDelete(id);
+      const vaccineTemplate = await VaccineTemplates.findByIdAndDelete(id);
       if (vaccineTemplate) {
         return vaccineTemplate;
       } else {
@@ -219,6 +219,7 @@ const Mutation = {
 
 const resolvers = {
   Vaccine,
+  VaccineTemplate,
   Query,
   Mutation,
 };

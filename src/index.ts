@@ -65,7 +65,7 @@ const sendMessagesToAllNecessities = async () => {
   }
 };
 
-cron.schedule('0 8 * * *', sendMessagesToAllNecessities, {
+cron.schedule('0 5 * * *', sendMessagesToAllNecessities, {
   scheduled: true,
   timezone: "America/Sao_Paulo"
 });
